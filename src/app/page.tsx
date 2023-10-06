@@ -7,7 +7,8 @@ import AddTrainee from "@/components/Admin/Trainees/AddTrainee";
 import EditTrainee from "@/components/Admin/Trainees/EditTrainee";
 import AddTraining from "@/components/Admin/Trainings/AddTraining";
 import './globals.css'
-import { TeacherGeneral } from "@/components/teacher/myTrainings";
+import { TeacherTraining } from "@/components/teacher/Training";
+
 
 export default function Home() {
   // route detection
@@ -18,7 +19,7 @@ export default function Home() {
 
   return (
     <main>
-     <Trainings></Trainings>
+     <TeacherTraining />
     </main>
   );
 }
