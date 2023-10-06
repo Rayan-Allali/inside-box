@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
-import AdminLayout from "@/app/AdminLayout";
+'use client'
+import { ReactElement, useState } from "react";
+import Popup from 'reactjs-popup';
 
 // Components
 import Header from "@/components/Shared/Header";
@@ -14,9 +15,11 @@ export const metadata = {
 }
 
 const Trainings = () => {
+    // blur state for modals
+  const [isBlured, setIsBlured] = useState(false);
+
   return (
-    <AdminLayout>
-      <div className="h-full p-12 py-20 ">
+      <div className={`h-full p-12 py-20 relative ${isBlured ? 'blur-[5px]' : ''}`}>
         <Header
           title="Welcome to the Trainings Page"
           subtitle="You can control accounts of trainings !"
@@ -33,25 +36,28 @@ const Trainings = () => {
             img={chatgbt}
             title={"Artificial Intelligence"}
             desc="Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page"
+            setIsBlured={setIsBlured}
           />
           <CardContainer
             img={chatgbt}
             title={"Ai"}
             desc="Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page"
+            setIsBlured={setIsBlured}
           />
           <CardContainer
             img={chatgbt}
             title={"Ai"}
             desc="Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page"
+            setIsBlured={setIsBlured}
           />
           <CardContainer
             img={chatgbt}
             title={"Ai"}
             desc="Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page"
+            setIsBlured={setIsBlured}
           />
         </div>
       </div>
-    </AdminLayout>
   );
 };
 
