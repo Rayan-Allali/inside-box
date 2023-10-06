@@ -12,22 +12,46 @@ import frame from "@/assets/images/SideNavbar/frame.svg";
 import frameBleu from "@/assets/images/SideNavbar/frameBleu.svg";
 import Profillogo from "@/assets/images/shared/Profillogo.svg";
 import signout from "@/assets/images/SideNavbar/signout.svg";
+import leaderBoard from '@/assets/images/SideNavbar/leaderBoard.svg'
+import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 import { useEffect, useState } from "react";
+import Link from 'next/link'
 
 interface ISideNavbarProps {
-  Route: "General" | "Trainers" | "Trainees" | "Trainings";
+  Route: "General" | "Trainers" | "Trainees" | "Trainings" | "leaderboard" ;
+  User?:"Admin" | 'Teacher' | "Student"
 }
 const index = (props: ISideNavbarProps) => {
-  const { Route } = props;
+  const { Route,User } = props;
   const [Elements, setElements] = useState([
-    { name: "General", pic: frame, Bleupic: frameBleu, route: "" },
-    { name: "Trainers", pic: Trainer, Bleupic: TrainerBleu, route: "" },
-    { name: "Trainees", pic: Trainees, Bleupic: TraineesBleu, route: "" },
-    { name: "Trainings", pic: Trainings, Bleupic: TrainingsBleu, route: "" },
+    { name: "General", pic: frame, Bleupic: frameBleu},
+    { name: "Trainers", pic: Trainer, Bleupic: TrainerBleu},
+    { name: "Trainees", pic: Trainees, Bleupic: TraineesBleu},
+    { name: "Trainings", pic: Trainings, Bleupic: TrainingsBleu},
+    { name: "leaderboard", pic: leaderBoard, Bleupic: leaderBoardBleu},
   ]);
 
   useEffect(() => {
-    // logic to set Elements according to user role
+    switch (User) {
+      case "Admin" || "Teacher" :
+        setElements([
+          { name: "General", pic: frame, Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, Bleupic: TrainerBleu},
+          { name: "Trainees", pic: Trainees, Bleupic: TraineesBleu},
+          { name: "Trainings", pic: Trainings, Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, Bleupic: leaderBoardBleu},
+        ])
+        break;
+      case "Student"  :
+        setElements([
+          { name: "General", pic: frame, Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, Bleupic: TrainerBleu},
+          { name: "Trainings", pic: Trainings, Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, Bleupic: leaderBoardBleu},
+        ])
+      default:
+        break;
+    }
   }, []);
 
   return (
@@ -37,9 +61,10 @@ const index = (props: ISideNavbarProps) => {
         <div className="w-full">
           {Elements.map((Elmnt) => {
             return (
-              <div
+              <Link 
                 key={Elmnt.name}
-                className={`flex w-full gap-4 p-5 font-bold justify-center 
+                href={`/${Elmnt.name} `}
+                className={`flex w-full gap-4 p-5 font-bold justify-center cursor-pointer
           ${
             Route == Elmnt.name
               ? "text-[#07A2F3] bg-[#07a0f30c]"
@@ -51,7 +76,7 @@ const index = (props: ISideNavbarProps) => {
                   src={Route == Elmnt.name ? Elmnt.Bleupic : Elmnt.pic}
                 />
                 <h1 className="">{Elmnt.name}</h1>
-              </div>
+              </Link>
             );
           })}
         </div>
