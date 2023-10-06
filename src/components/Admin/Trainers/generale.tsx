@@ -14,3 +14,5 @@ export const TeacherGeneral = ()=>{
         </div>
     )
 }
+
+// to check
