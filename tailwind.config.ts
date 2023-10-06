@@ -22,6 +22,7 @@ const config: Config = {
         'green-primary': '#38CFBA',
         'red-primary': '#F00',
         'blue-text': '#896DDB',
+        'gray-text': '#333333b7',
       },
       boxShadow: {
         sidebar: '0px 6px 12px 0px rgba(0, 0, 0, 0.05), 0px 22px 22px 0px rgba(0, 0, 0, 0.04), 0px 50px 30px 0px rgba(0, 0, 0, 0.03), 0px 89px 36px 0px rgba(0, 0, 0, 0.01), 0px 139px 39px 0px rgba(0, 0, 0, 0.00)'
