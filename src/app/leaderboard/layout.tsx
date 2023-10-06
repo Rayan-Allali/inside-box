@@ -1,4 +1,7 @@
 import '../globals.css'
+import { Inter } from 'next/font/google'
+import SideNavbar from '@/components/Shared/Sidenavbar'
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Next.js',
@@ -12,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={inter.className}>
+            <div className='w-screen h-screen flex'>
+                <SideNavbar Route='General'/>      {/* to fix lateer on */}
+                <main className='w-5/6 h-full bg-white'>{children}</main>
+            </div>
+        </body>
     </html>
   )
 }
