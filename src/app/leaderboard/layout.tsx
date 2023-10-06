@@ -1,6 +1,6 @@
 import '../globals.css'
 import { Inter } from 'next/font/google'
-import SideNavbar from '@/components/Shared/Sidenavbar'
+import SideNavbar from '@/components/Shared/SideNavbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
