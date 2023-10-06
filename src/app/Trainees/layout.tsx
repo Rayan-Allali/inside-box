@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
             <div className='w-screen h-screen flex'>
-                <SideNavbar Route='General'/> 
+                <SideNavbar Route='Trainees'/> 
                 <main className='w-5/6 h-full bg-white'>{children}</main>
             </div>
         </body>
