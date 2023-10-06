@@ -10,7 +10,7 @@ interface ICardContainerProps {
 const CardContainer = (props: ICardContainerProps) => {
   const { title, desc, img } = props;
   return (
-    <div className="border border-[#896DDB] rounded-[19px] h-72 w-96 ">
+    <div className="border border-[#896DDB] rounded-[19px] h-72 w-96  ">
       <Image
         className="rounded-tl-[19px] rounded-tr-[19px] w-full  "
         alt="Course Img"
