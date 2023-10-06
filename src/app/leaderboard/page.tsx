@@ -48,7 +48,7 @@ export default function Home() {
         },
       ];
     return (
-      <main  className="p-10 py-14" >
+      <main  className="p-20 py-14" >
         <Header  title="Leader Board" subtitle="You can control accounts of trainers , trainees , and trainings  ! " />
         <div className="flex mt-12 items-center justify-between">
             <Image alt="leaderboardIcon" src={leaderBoard} />

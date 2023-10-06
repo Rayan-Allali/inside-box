@@ -52,8 +52,8 @@ export default function Home() {
   return (
     <main className="p-10 py-14">
       <Header
-        title="Welcome to the Trainees Page"
-        subtitle="You can control accounts of trainees ! "
+        title="Welcome to the Trainers Page "
+        subtitle="You can control accounts of trainers ! "
       />
       <div className="flex mt-12 items-center justify-between">
         <button className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center">
@@ -83,8 +83,7 @@ export default function Home() {
         <thead>
           <tr className="text-2xl mb-4 ">
             <th className="px-4 text-start ">Username</th>
-            <th className="px-4 text-start "> Number of Trainings </th>
-            <th className="px-4 text-start ">XP</th>
+            <th className="px-4 text-start "> Trainings </th>
             <th className="px-4 text-start "></th>
           </tr>
         </thead>
@@ -96,7 +95,6 @@ export default function Home() {
             >
               <td className="px-4 py-4 pt-6 ">{d.rank}</td>
               <td className="px-4 py-4 font-bold ">{d.traineeName}</td>
-              <td className="px-4 py-4 font-bold ">{d.completedCourses}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
               <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
                 <Image alt="editIcon" src={editIcon} />
