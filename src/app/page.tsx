@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import SignIn from '@/components/SignIn'
-import Sidenavbar from '@/components/shared/Sidenavbar'
+import SideNavbar from '@/components/Shared/SideNavbar'
 
 export default function Home() {
   return (
     <main>
-     <Sidenavbar Route="Trainees" />
+     <SideNavbar Route="Trainees" />
     </main>
   )
 }

@@ -11,10 +11,17 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors:{
-        primaryBleu:"#07A2F3"
+        primaryBleu:"#07A2F3",
+        'primary-black': '#1B1B1B',
+      },
+      boxShadow: {
+        sidebar: '0px 6px 12px 0px rgba(0, 0, 0, 0.05), 0px 22px 22px 0px rgba(0, 0, 0, 0.04), 0px 50px 30px 0px rgba(0, 0, 0, 0.03), 0px 89px 36px 0px rgba(0, 0, 0, 0.01), 0px 139px 39px 0px rgba(0, 0, 0, 0.00)'
+      },
+      fontFamily: {
+        gilroy: ['Gilroy', 'sans-serif']
       }
     },
   },

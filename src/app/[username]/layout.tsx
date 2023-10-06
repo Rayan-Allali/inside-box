@@ -1,6 +1,7 @@
 import '../globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import SideNavbar from '@/components/Shared/SideNavbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,8 +19,8 @@ export default function AdminLayout({
     <html lang="en">
         <body className={inter.className}>
             <div className='w-screen h-screen flex'>
-                <nav className='w-1/6 h-full bg-red-500'>SieBar</nav>
-                <main className='w-5/6 h-full'>{children}</main>
+                <SideNavbar Route='General'/>
+                <main className='w-5/6 h-full bg-white'>{children}</main>
             </div>
         </body>
     </html>

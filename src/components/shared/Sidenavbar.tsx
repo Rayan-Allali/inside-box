@@ -1,21 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import logo from "@/assests/images/shared/logo.svg";
-import Trainees from "@/assests/images/SideNavbar/trainees.svg";
-import TraineesBleu from "@/assests/images/SideNavbar/traineesBleu.svg";
-import Trainer from "@/assests/images/SideNavbar/trainers.svg";
-import TrainerBleu from "@/assests/images/SideNavbar/trainersBleu.svg";
-import Trainings from "@/assests/images/SideNavbar/trainings.svg";
-import TrainingsBleu from "@/assests/images/SideNavbar/trainingsBleu.svg";
-import frame from "@/assests/images/SideNavbar/frame.svg";
-import frameBleu from "@/assests/images/SideNavbar/frameBleu.svg";
-import Profillogo from "@/assests/images/shared/Profillogo.svg";
-import signout from "@/assests/images/SideNavbar/signout.svg";
+import logo from "@/assets/images/shared/logo.svg";
+import Trainees from "@/assets/images/SideNavbar/trainees.svg";
+import TraineesBleu from "@/assets/images/SideNavbar/traineesBleu.svg";
+import Trainer from "@/assets/images/SideNavbar/trainers.svg";
+import TrainerBleu from "@/assets/images/SideNavbar/trainersBleu.svg";
+import Trainings from "@/assets/images/SideNavbar/trainings.svg";
+import TrainingsBleu from "@/assets/images/SideNavbar/trainingsBleu.svg";
+import frame from "@/assets/images/SideNavbar/frame.svg";
+import frameBleu from "@/assets/images/SideNavbar/frameBleu.svg";
+import Profillogo from "@/assets/images/shared/Profillogo.svg";
+import signout from "@/assets/images/SideNavbar/signout.svg";
 import { useEffect, useState } from "react";
 
 interface ISideNavbarProps {
-  Route: string;
+  Route: "General" | "Trainers" | "Trainees" | "Trainings";
 }
 const index = (props: ISideNavbarProps) => {
   const { Route } = props;
@@ -31,7 +31,7 @@ const index = (props: ISideNavbarProps) => {
   }, []);
 
   return (
-    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white ">
+    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white shadow-sidebar">
       <div className="flex flex-col gap-32 items-center w-full ">
         <Image alt="logo" src={logo} />
         <div className="w-full">
