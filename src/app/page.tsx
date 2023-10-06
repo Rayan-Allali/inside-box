@@ -1,3 +1,5 @@
+import './globals.css'
+import { useState } from 'react'
 import Image from "next/image";
 import SignIn from "@/components/SignIn";
 import SideNavbar from "@/components/Shared/SideNavbar";
@@ -18,12 +20,12 @@ export default function Home() {
   return (
     <main>
       {/* <SignIn /> */}
-      {/* <Trainings/> */}
+      <Trainings/>
       {/* <AddTrainer/> */}
       {/* <EditTrainer/> */}
       {/* <AddTrainee/> */}
       {/* <EditTrainee/> */}
-      <AddTraining/>
+      {/* <AddTraining/> */}
     </main>
   );
 }
