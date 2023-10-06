@@ -1,6 +1,5 @@
 'use client'
 import { ReactElement, useState } from "react";
-import AdminLayout from "@/app/AdminLayout";
 import Popup from 'reactjs-popup';
 
 // Components
@@ -20,7 +19,6 @@ const Trainings = () => {
   const [isBlured, setIsBlured] = useState(false);
 
   return (
-    <AdminLayout>
       <div className={`h-full p-12 py-20 relative ${isBlured ? 'blur-[5px]' : ''}`}>
         <Header
           title="Welcome to the Trainings Page"
@@ -60,7 +58,6 @@ const Trainings = () => {
           />
         </div>
       </div>
-    </AdminLayout>
   );
 };
 
