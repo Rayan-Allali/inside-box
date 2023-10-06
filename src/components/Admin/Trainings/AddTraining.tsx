@@ -20,7 +20,7 @@ const AddTraining = () => {
 
     const [ viewPassword, setViewPassword ] = useState(false);
 
-    const handleSubmit = (values, {setSubmitting}) => {   
+    const handleSubmit = (values:any, {setSubmitting}:{setSubmitting:any}) => {   
         console.log(values);
         setSubmitting(false);
     }
