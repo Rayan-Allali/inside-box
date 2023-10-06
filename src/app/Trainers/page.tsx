@@ -1,9 +1,11 @@
+"use client";
 import arrowDown from "@/assets/images/shared/arrowDown.svg";
 import Image from "next/image";
 import researchIcon from "@/assets/images/shared/researchIcon.svg";
-import deletIcon from "@/assets/images/shared/delete.svg"
-import editIcon from "@/assets/images/shared/edit.svg"
+import deletIcon from "@/assets/images/shared/delete.svg";
+import editIcon from "@/assets/images/shared/edit.svg";
 import Header from "@/components/Shared/Header";
+import { useRouter } from "next/navigation";
 export default function Home() {
   const data = [
     {
@@ -49,6 +51,7 @@ export default function Home() {
       xp: 2400,
     },
   ];
+  const router = useRouter();
   return (
     <main className="p-10 py-14">
       <Header
@@ -56,7 +59,10 @@ export default function Home() {
         subtitle="You can control accounts of trainers ! "
       />
       <div className="flex mt-12 items-center justify-between">
-        <button className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center">
+        <button
+          className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
+          onClick={() => router.push("/Trainers/AddTrainers")}
+        >
           <p className=""> Add </p>
           <p className=""> + </p>
         </button>
@@ -91,17 +97,19 @@ export default function Home() {
           {data.map((d, index) => (
             <tr
               key={index}
-              className={`text-[#828387] text-xl ${index==0 && "border-t "} `}
+              className={`text-[#828387] text-xl ${index == 0 && "border-t "} `}
             >
               <td className="px-4 py-4 pt-6 ">{d.rank}</td>
               <td className="px-4 py-4 font-bold ">{d.traineeName}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
-              <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
-                <Image alt="editIcon" src={editIcon} />
-              </button>
-              <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
-              <Image alt="deleticon" src={deletIcon} />
-              </button>
+                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
+                onClick={()=>router.push('/Trainers/2/EditTrainer')}
+                >
+                  <Image alt="editIcon" src={editIcon} />
+                </button>
+                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
+                  <Image alt="deleticon" src={deletIcon} />
+                </button>
               </td>
             </tr>
           ))}
