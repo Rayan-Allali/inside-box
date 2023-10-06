@@ -5,7 +5,6 @@ import Edit from "@/assets/images/shared/edit.svg";
 import deleteIcon from "@/assets/images/shared/delete.svg";
 import Popup from "reactjs-popup";
 import ActionWithPasswordWindow from "../Shared/PopupsWindows/ActionWithPasswordWindow";
-import TraineesListWindow from "../Shared/PopupsWindows/TraineesListWindow";
 
 interface ICardContainerProps {
   title: string;
@@ -52,8 +51,7 @@ const CardContainer = (props: ICardContainerProps) => {
           >
             {(close) => {
               return (
-                <TraineesListWindow actionHandler={handleDelete(close)} cancelHandler={close} />
-                // <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(close)} cancelHandler={close} />
+                <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(close)} cancelHandler={close} />
               )}
             }
           </Popup>

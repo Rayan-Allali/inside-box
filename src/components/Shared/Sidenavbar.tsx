@@ -25,11 +25,10 @@ import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 interface ISideNavbarProps {
   Route: "General" | "Trainers" | "Trainees" | "Trainings" | "leaderboard" ;
   User?:"Admin" | 'Teacher' | "Student";
-  setIsBlured: Function
 }
 
 const index = (props: ISideNavbarProps) => {
-  const { Route, User, setIsBlured } = props;
+  const { Route, User } = props;
 
   const [Elements, setElements] = useState([
     { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
@@ -113,8 +112,6 @@ const index = (props: ISideNavbarProps) => {
               <Image alt="logout" src={Logout}/>
             }
             modal
-            onOpen={() => setIsBlured(true)}
-            onClose={() => setIsBlured(false)}
             nested
           >
             {(close) => {
