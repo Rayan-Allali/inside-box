@@ -22,6 +22,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/AdultStudentGeneral/AdultStudentGeneral.tsx"],
+
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Trainees/[id]/EditTrainee/page", "src/components/AdultStudentGeneral/AdultStudentGeneral.tsx"],
   "exclude": ["node_modules"]
 }
