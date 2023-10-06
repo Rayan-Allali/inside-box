@@ -5,6 +5,7 @@ import CardContainer from '../Admin/CourseContainer'
 import AiImg from "@/assets/images/courses/chatgpt.svg"
 import Image from 'next/image';
 export const TeacherGeneral = ()=>{
+    const [ isBlured, setIsBlured ] = useState(false);
 
     const [cards,setCards] = useState<any[]>(
        [
@@ -27,7 +28,7 @@ export const TeacherGeneral = ()=>{
         }]
     )
     return(
-<div className='p-[40px]'>
+<div className={`p-[40px] ${isBlured ? 'blur-[5px]' : ''}`}>
 <div className='flex justify-between items-center '  >
             <div className="flex flex-col gap-[10px] ">
                 <h1 className="text-3xl font-bold">Welcome to Your Main Page</h1>
@@ -40,7 +41,7 @@ export const TeacherGeneral = ()=>{
         <div className='grid grid-cols-4 gap-8 pt-[40px]  '>
             {cards.map((card,index)=>{
                 return(
-                        <CardContainer key={index} title={card.title} desc={card.desc} img={card.img}  />
+                        <CardContainer key={index} title={card.title} desc={card.desc} img={card.img} setIsBlured={setIsBlured} />
                 )
             })}
         </div>
