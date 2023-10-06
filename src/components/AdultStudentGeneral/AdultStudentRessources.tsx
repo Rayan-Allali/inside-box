@@ -20,10 +20,10 @@ const AdultStudentGeneral = () => {
      <div className='h-full pt-8 px-20 flex flex-col space-y-10'>
         <Header title='View ressources to your chapters' subtitle='You can view ressources of all chapters   ' />
 
-        <div className='flex flex-row '>
-            <button className='py-3 px-9 rounded-[8px] border-[#07A2F3] text-[#07A2F3] border-2 '> Ch1 : Basics</button>
-            <button> Ch1 : Intro to web </button>
-            <button> Ch1 : Intro to html </button>
+        <div className='flex flex-row justify-start space-x-7 '>
+            <button className='py-3 px-9 rounded-[8px] border-[#07A2F3] text-[#07A2F3] border-2'> Ch1 : Course Basics</button>
+            <button className='py-3 px-9 rounded-[8px] border-[#07A2F3] text-[#07A2F3] border-2'> Ch1 : Intro to web </button>
+            <button className='py-3 px-9 rounded-[8px] border-[#07A2F3] text-[#07A2F3] border-2'> Ch1 : Intro to html </button>
         </div>
 
         <div className='bg-[#FBFBFB]'>

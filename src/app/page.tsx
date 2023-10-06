@@ -19,14 +19,16 @@ export default function Home() {
 
   return (
     <main>
-      { /*<SignIn /> */}
-      {/*  <Trainings/> */ }
-      {/* <AddTrainer/>*/ }
-      {/* <EditTrainer/> */}
-      {/* <AddTrainee/> */}
-      {/* <EditTrainee/> */}
-      { /* <AddTraining/> */ }
-      <AdultStudentGeneral/>
+      {/* <SignIn /> */     }
+      {/* <Trainings/> */   }
+      {/* <AddTrainer/>*/   }
+      {/* <EditTrainer/> */ }
+      {/* <AddTrainee/> */  }
+      {/* <EditTrainee/> */ }
+      {/* <AddTraining/> */ }
+      {/*<AdultStudentGeneral/>*/}
+      
+      <AdultStudentRes/>
       
     </main>
   );
