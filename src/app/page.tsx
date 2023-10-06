@@ -18,14 +18,7 @@ export default function Home() {
 
   return (
     <main>
-      {/* <SignIn /> */}
-      {/* <Trainings/> */}
-      {/* <AddTrainer/> */}
-      {/* <EditTrainer/> */}
-      {/* <AddTrainee/> */}
-      {/* <EditTrainee/> */}
-      {/* <AddTraining/> */}
-      <TeacherGeneral />
+     <Trainings></Trainings>
     </main>
   );
 }
