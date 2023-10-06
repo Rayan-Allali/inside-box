@@ -43,13 +43,13 @@ export const ChapitreRessource=({chapNbr}:props)=>{
 {
     ressources.map(ressource=>{
         return(
-            <div>
+            <div className="flex items-center justify-center flex-col gap-5">
 
                 <div >
                 <Image src={ressource.type ? PdfImage.src : MeetImage} alt="pdf image" width={75} height={96} />
                 </div>
                 
-                <h1 className='text-black text-xl  mt-5'>{ressource.title}</h1>
+                <h1 className='text-black text-xl'>{ressource.title}</h1>
             
             </div>
            
