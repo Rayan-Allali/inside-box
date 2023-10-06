@@ -3,6 +3,18 @@ import React, { useState } from 'react'
 import Header from '../Shared/Header'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { z } from 'zod'
+import { toFormikValidate } from 'zod-formik-adapter';
+
+const AddTrainerFormSchema = z.object({
+    firstName: z.string().min(1,'First name is required'),
+    lastName: z.string().min(1, 'Last name is required'),
+    email: z.string().email('Invalid email address').min(1, 'Email is required'),
+    password: z.string().min(8, 'Password must be at least 8 characters long'),
+    // gender will be either "male" or "female":
+    gender: z.enum(['', 'male', 'female']),
+    trainingCourse: z.string().min(1, 'Training course is required' ),
+});
+    
 
 const AddTrainer = () => {
     // form inputs will be: first name, last name, email, password for the trainer (default one to login), gender (male, female) and the training course to add the trainer to
@@ -20,6 +32,7 @@ const AddTrainer = () => {
             <Header title='Add a trainer' subtitle='You can control accounts of tainees!'/>
             <Formik
             initialValues={{firstName: '', lastName: '', email: '', password: '', gender: '', trainingCourse: ''}} 
+            validate={toFormikValidate(AddTrainerFormSchema)}
             onSubmit={handleSubmit}
             >
                 {({isSubmitting}) => (
