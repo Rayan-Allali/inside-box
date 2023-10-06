@@ -1,6 +1,13 @@
 "use client";
-
+import Link from 'next/link'
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
+
+// Components
+import LogOutWindow from '@/components/Shared/PopupsWindows/LogOutWindow'
+
+// Images
 import logo from "@/assets/images/shared/logo.svg";
 import Trainees from "@/assets/images/SideNavbar/trainees.svg";
 import TraineesBleu from "@/assets/images/SideNavbar/traineesBleu.svg";
@@ -11,35 +18,70 @@ import TrainingsBleu from "@/assets/images/SideNavbar/trainingsBleu.svg";
 import frame from "@/assets/images/SideNavbar/frame.svg";
 import frameBleu from "@/assets/images/SideNavbar/frameBleu.svg";
 import Profillogo from "@/assets/images/shared/Profillogo.svg";
-import signout from "@/assets/images/SideNavbar/signout.svg";
-import { useEffect, useState } from "react";
+import Logout from "@/assets/images/SideNavbar/signout.svg";
+import leaderBoard from '@/assets/images/SideNavbar/leaderBoard.svg'
+import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 
 interface ISideNavbarProps {
-  Route: "General" | "Trainers" | "Trainees" | "Trainings";
+  Route: "General" | "Trainers" | "Trainees" | "Trainings" | "leaderboard" ;
+  User?:"Admin" | 'Teacher' | "Student";
 }
+
 const index = (props: ISideNavbarProps) => {
-  const { Route } = props;
+  const { Route, User } = props;
+
   const [Elements, setElements] = useState([
-    { name: "General", pic: frame, Bleupic: frameBleu, route: "" },
-    { name: "Trainers", pic: Trainer, Bleupic: TrainerBleu, route: "" },
-    { name: "Trainees", pic: Trainees, Bleupic: TraineesBleu, route: "" },
-    { name: "Trainings", pic: Trainings, Bleupic: TrainingsBleu, route: "" },
+    { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
+    { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
+    { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
+    { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
+    { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
   ]);
 
   useEffect(() => {
-    // logic to set Elements according to user role
+    switch (User) {
+      case "Admin" :
+        setElements([
+          { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
+          { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
+          { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
+        ])
+        break;
+      case "Student"  :
+        setElements([
+          { name: "General", pic: frame, route:"General", Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, route:"Trainers", Bleupic: TrainerBleu},
+          { name: "Trainings", pic: Trainings, route:"Trainings", Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, route:"leaderboard", Bleupic: leaderBoardBleu},
+        ])
+        break;
+        case "Teacher"  :
+          setElements([
+            { name: "My Students", pic: frame, route:"Trainees", Bleupic: frameBleu},
+            { name: "My Trainings", pic: Trainings, route:"Trainings", Bleupic: TrainingsBleu},
+            { name: "leaderboard", pic: leaderBoard, route:"leaderboard", Bleupic: leaderBoardBleu},
+          ])
+          break;
+    }
   }, []);
 
+  const handleLogout = (closeFunction:Function) => (e:MouseEvent) => {
+
+  }
+
   return (
-    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white shadow-sidebar">
+    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white drop-shadow-sidebar">
       <div className="flex flex-col gap-32 items-center w-full">
         <Image alt="logo" src={logo} />
         <div className="w-full">
           {Elements.map((Elmnt) => {
             return (
-              <div
+              <Link 
                 key={Elmnt.name}
-                className={`flex w-full gap-4 p-5 font-bold justify-center 
+                href={`/${Elmnt.route} `}
+                className={`flex w-full gap-4 p-5 font-bold justify-center cursor-pointer
           ${
             Route == Elmnt.name
               ? "text-[#07A2F3] bg-[#07a0f30c]"
@@ -51,7 +93,7 @@ const index = (props: ISideNavbarProps) => {
                   src={Route == Elmnt.name ? Elmnt.Bleupic : Elmnt.pic}
                 />
                 <h1 className="">{Elmnt.name}</h1>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -65,7 +107,19 @@ const index = (props: ISideNavbarProps) => {
             <p className="text-xs">Super Admin</p>
           </div>
         </div>
-        <Image alt="signout" src={signout} />
+        <Popup
+            trigger={
+              <Image alt="logout" src={Logout}/>
+            }
+            modal
+            nested
+          >
+            {(close) => {
+              return (
+                <LogOutWindow actionHandler={handleLogout(close)} cancelHandler={close} />
+              )}
+            }
+          </Popup>
       </div>
     </div>
   );
