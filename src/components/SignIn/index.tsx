@@ -5,6 +5,9 @@ import bgSignIn from "@/assets/images/SignIn/bleuHand.svg";
 import logo from "@/assets/images/shared/logo.svg";
 import eye from "@/assets/images/SignIn/eye.svg";
 import { useRouter } from "next/navigation";
+import { axiosCustom } from "@/utils/axios";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const admin = [
   {
@@ -21,32 +24,59 @@ const admin = [
   },
 ];
 const SignIn = () => {
+
   const router = useRouter();
   const [Clicked, setCLicked] = useState(false);
   const adr = useRef<any>();
   const pswd = useRef<any>();
-  useEffect(() => {
-    console.log(adr?.current?.value);
 
-    if (Clicked) {
-      let i = 0;
-      while (i < admin.length && i != -1) {
-        if (
-          admin[i].email == adr?.current?.value &&
-          admin[i].pswd == pswd?.current?.value
-        ) {
-          i = -1;
-          break;
+  const handleSignIn = async()=>{
+    try {
+      console.log("adr")
+      console.log(adr)
+      console.log("pswd")
+      console.log(pswd )
+      const response:any = await axios.post("http://localhost:8000/auth/signIn", {
+        email:adr.current.value,
+        password:pswd.current.value
+      });
+      
+      console.log(response);
+      console.log(response);
+      if (response.status >= 200 && response.status <300) {
+        console.log(response)
+        localStorage.setItem('user',response.data.user)
+        localStorage.setItem('token',response.data.token)
+        if(response.data.user.role === "Admin"){
+          router.push("/General");
         }
-        i++;
-      }
-      if (i == -1) {
-        router.push("/leaderboard");
-      } else console.log(" you're not an admin");
+      } 
+    } catch (err) {
+      console.error(err);
     }
-  }, [Clicked]);
+  }
+  //   console.log(adr?.current?.value);
+
+  //   if (Clicked) {
+  //     let i = 0;
+  //     while (i < admin.length && i != -1) {
+  //       if (
+  //         admin[i].email == adr?.current?.value &&
+  //         admin[i].pswd == pswd?.current?.value
+  //       ) {
+  //         i = -1;
+  //         break;
+  //       }
+  //       i++;
+  //     }
+  //     if (i == -1) {
+  //       router.push("/leaderboard");
+  //     } else console.log(" you're not an admin");
+  //   }
+  // }, [Clicked]);
   return (
-    <div className="flex items-center w-full h-[100vh]   ">
+    <div>
+      <div className="flex items-center w-full h-[100vh]   ">
       <Image alt="signInpic" src={bgSignIn} />
       <div className="bg-white flex flex-col items-center flex-grow h-full w-1/2 text-center py-32 ">
         <div className=" w-[500px] flex flex-col gap-32 ">
@@ -81,7 +111,7 @@ const SignIn = () => {
             <button
               type="button"
               className="bg-primaryBleu text-white font-semibold w-full p-4 rounded-lg text-2xl "
-              onClick={() => setCLicked(true)}
+              onClick={() => handleSignIn()}
             >
               Login
             </button>
@@ -89,6 +119,8 @@ const SignIn = () => {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 };
 

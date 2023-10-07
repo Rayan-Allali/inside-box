@@ -53,8 +53,8 @@ export const TeacherTraining=()=>{
         <div className="flex flex-col justify-between basis-[35%]">
        <div>
        <div className="flex justify-between w-full mb-10">
-            <h3 className="text-3xl font-Bold text-[#676C72] ">{training.title}</h3>
-            <h2 className="text-3xl font-Bold text-[#676C72]">{training.exp} Exp</h2>
+            <h3 className="text-3xl font-bold text-[#676C72] ">{training.title}</h3>
+            <h2 className="text-3xl font-bold text-[#676C72]">{training.exp} Exp</h2>
         </div> 
         <div className='flex flex-col gap-8'>
             {courses.map((course,index) =>{
