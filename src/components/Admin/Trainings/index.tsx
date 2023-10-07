@@ -1,6 +1,7 @@
 'use client'
 import { ReactElement, useState } from "react";
 import Popup from 'reactjs-popup';
+import { useRouter } from 'next/navigation'
 
 // Components
 import Header from "@/components/Shared/Header";
@@ -17,6 +18,7 @@ export const metadata = {
 const Trainings = () => {
     // blur state for modals
   const [isBlured, setIsBlured] = useState(false);
+  const router = useRouter()
 
   return (
       <div className={`h-full p-12 py-20 relative ${isBlured ? 'blur-[5px]' : ''}`}>
@@ -30,7 +32,7 @@ const Trainings = () => {
               <h1 className="text-xl">New Training</h1>
               <p className="text-[#00000080] text-lg">You can add a training</p>
               </div>
-            <button className="border border-[#896DDB] rounded-[10px] p-3 w-32 ">  Add </button>
+            <button className="border border-[#896DDB] rounded-[10px] p-3 w-32 "onClick={()=>{router.push('/Trainings/AddTraining')}} >  Add </button>
           </div>
           <CardContainer
             img={chatgbt}
