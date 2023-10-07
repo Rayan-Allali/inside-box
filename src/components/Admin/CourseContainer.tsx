@@ -11,11 +11,12 @@ interface ICardContainerProps {
   title: string;
   desc: string;
   img: any;
-  handleDelete: Function;
+  handleDelete?: Function;
   setIsBlured:Function;
+  IsAdmin?:boolean
 }
 const CardContainer = (props: ICardContainerProps) => {
-  const { title, desc, img, handleDelete, setIsBlured } = props;
+  const { title, desc, img, handleDelete,IsAdmin, setIsBlured } = props;
 
 const router=useRouter()
   
@@ -33,7 +34,7 @@ const router=useRouter()
           <h1 className="text-[#000000] font-bold  "> {title} </h1>
           <p className="text-xs text-[#00000080] "> {desc} </p>
         </div>
-        <div className="flex items-center justify-end gap-3">
+     { IsAdmin &&   <div className="flex items-center justify-end gap-3">
           <button type="button" title="edit" className="border border-[#1C263080] p-3 py-2 rounded-md "
           onClick={()=>router.push('/Trainings/5/EditTraining')}
           >
@@ -57,7 +58,7 @@ const router=useRouter()
               )}
             }
           </Popup>
-        </div>
+        </div>}
       </div>
     </div>
   );

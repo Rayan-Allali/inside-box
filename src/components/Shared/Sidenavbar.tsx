@@ -23,7 +23,7 @@ import leaderBoard from '@/assets/images/SideNavbar/leaderBoard.svg'
 import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 
 interface ISideNavbarProps {
-  Route: "General" | "Trainers" | "Trainees" | "Trainings" | "leaderboard" ;
+  Route: string ;
   User?:"Admin" | 'Teacher' | "Student";
   setIsBlured: Function;
 }
@@ -31,13 +31,7 @@ interface ISideNavbarProps {
 const index = (props: ISideNavbarProps) => {
   const { Route, User, setIsBlured } = props;
 
-  const [Elements, setElements] = useState([
-    { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
-    { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
-    { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
-    { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
-    { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
-  ]);
+  const [Elements, setElements] = useState<any>();
 
   useEffect(() => {
     switch (User) {
@@ -60,9 +54,18 @@ const index = (props: ISideNavbarProps) => {
         break;
         case "Teacher"  :
           setElements([
-            { name: "My Students", pic: frame, route:"Trainees", Bleupic: frameBleu},
-            { name: "My Trainings", pic: Trainings, route:"Trainings", Bleupic: TrainingsBleu},
-            { name: "leaderboard", pic: leaderBoard, route:"leaderboard", Bleupic: leaderBoardBleu},
+            { name: "My Students", pic: frame, route:"Teacher/Trainees", Bleupic: frameBleu},
+            { name: "My Trainings", pic: Trainings, route:"Teacher/Trainings", Bleupic: TrainingsBleu},
+            { name: "leaderboard", pic: leaderBoard, route:"Teacher/leaderboard", Bleupic: leaderBoardBleu},
+          ])
+          break;
+          default: 
+          setElements([
+            { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
+            { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
+            { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
+            { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
+            { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
           ])
           break;
     }
@@ -78,10 +81,10 @@ const index = (props: ISideNavbarProps) => {
       <div className="flex flex-col gap-32 items-center w-full">
         <Image alt="logo" src={logo} />
         <div className="w-full">
-          {Elements.map((Elmnt) => {
+          { Elements && Elements.map((Elmnt:any,index:any) => {
             return (
               <Link 
-                key={Elmnt.name}
+                key={index}
                 href={`/${Elmnt.route} `}
                 className={`flex w-full gap-4 p-5 font-bold justify-center cursor-pointer
           ${

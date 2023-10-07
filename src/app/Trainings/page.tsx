@@ -56,6 +56,7 @@ export default function Home() {
                 desc={training.desc}
                 setIsBlured={setIsBlured}
                 handleDelete={handleDelete}
+                IsAdmin
               />
             )
           })}

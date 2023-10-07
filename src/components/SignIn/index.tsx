@@ -30,50 +30,50 @@ const SignIn = () => {
   const adr = useRef<any>();
   const pswd = useRef<any>();
 
-  const handleSignIn = async()=>{
-    try {
-      console.log("adr")
-      console.log(adr)
-      console.log("pswd")
-      console.log(pswd )
-      const response:any = await axios.post("http://localhost:8000/auth/signIn", {
-        email:adr.current.value,
-        password:pswd.current.value
-      });
+  // const handleSignIn = async()=>{
+  //   try {
+  //     console.log("adr")
+  //     console.log(adr)
+  //     console.log("pswd")
+  //     console.log(pswd )
+  //     const response:any = await axios.post("http://localhost:8000/auth/signIn", {
+  //       email:adr.current.value,
+  //       password:pswd.current.value
+  //     });
       
-      console.log(response);
-      console.log(response);
-      if (response.status >= 200 && response.status <300) {
-        console.log(response)
-        localStorage.setItem('user',response.data.user)
-        localStorage.setItem('token',response.data.token)
-        if(response.data.user.role === "Admin"){
-          router.push("/General");
-        }
-      } 
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  //   console.log(adr?.current?.value);
-
-  //   if (Clicked) {
-  //     let i = 0;
-  //     while (i < admin.length && i != -1) {
-  //       if (
-  //         admin[i].email == adr?.current?.value &&
-  //         admin[i].pswd == pswd?.current?.value
-  //       ) {
-  //         i = -1;
-  //         break;
+  //     console.log(response);
+  //     console.log(response);
+  //     if (response.status >= 200 && response.status <300) {
+  //       console.log(response)
+  //       localStorage.setItem('user',response.data.user)
+  //       localStorage.setItem('token',response.data.token)
+  //       if(response.data.user.role === "Admin"){
+  //         router.push("/General");
   //       }
-  //       i++;
-  //     }
-  //     if (i == -1) {
-  //       router.push("/leaderboard");
-  //     } else console.log(" you're not an admin");
+  //     } 
+  //   } catch (err) {
+  //     console.error(err);
   //   }
-  // }, [Clicked]);
+  // }
+  //   console.log(adr?.current?.value);
+useEffect(()=>{
+  if (Clicked) {
+    let i = 0;
+    while (i < admin.length && i != -1) {
+      if (
+        admin[i].email == adr?.current?.value &&
+        admin[i].pswd == pswd?.current?.value
+      ) {
+        i = -1;
+        break;
+      }
+      i++;
+    }
+    if (i == -1) {
+      router.push("/General");
+    } else console.log(" you're not an admin");
+  }
+},[Clicked])
   return (
     <div>
       <div className="flex items-center w-full h-[100vh]   ">
@@ -111,7 +111,7 @@ const SignIn = () => {
             <button
               type="button"
               className="bg-primaryBleu text-white font-semibold w-full p-4 rounded-lg text-2xl "
-              onClick={() => handleSignIn()}
+              onClick={() => setCLicked(true)}
             >
               Login
             </button>
