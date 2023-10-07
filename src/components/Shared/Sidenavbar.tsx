@@ -24,7 +24,7 @@ import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 
 interface ISideNavbarProps {
   Route: string ;
-  User?:string
+  User: 'Admin' | 'StudentAdult' | 'StudentKid' | 'Teacher'
   setIsBlured: Function;
 }
 
@@ -52,7 +52,7 @@ const index = (props: ISideNavbarProps) => {
           { name: "leaderboard", pic: leaderBoard, route:"StudentAdult/leaderboard", Bleupic: leaderBoardBleu},
         ])
         break;
-        case "StudentKids"  :
+        case "StudentKid"  :
           setElements([
             { name: "General", pic: frame, route:"StudentKids/General", Bleupic: frameBleu},
             { name: "Trainers", pic: Trainer, route:"StudentKids/Trainers", Bleupic: TrainerBleu},

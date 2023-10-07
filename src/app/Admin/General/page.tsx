@@ -7,7 +7,7 @@ import { AdminHeaderCard } from "@/components/Admin/Genrale/headerCard";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const route=useRouter()
+  const router=useRouter()
   return (
     <div className="p-[40px] max-h-screen overflow-y-scroll ">
       <Header
@@ -24,17 +24,17 @@ export default function Home() {
       </div>
       <div className="flex items-center mt-8 justify-between text-[#38CFBA] ">
         <div className="flex cursor-pointer w-[477px] h-[100px] font-extrabold text-2xl justify-center rounded-lg border border-[#38CFBA] items-center gap-2"
-        onClick={()=>{route.push('/Trainings/AddTraining')}} >
+        onClick={()=>{router.push('/Admin/Trainings/AddTraining')}} >
           <p className="">+</p>
           <p className="">Add a Trainnig </p>
         </div>
         <div className="flex cursor-pointer w-[477px] h-[100px] font-extrabold text-2xl justify-center rounded-lg border border-[#38CFBA] items-center gap-2"
-        onClick={()=>{route.push("/Trainers/AddTrainers")}} >
+        onClick={()=>{router.push("/Admin/Trainers/AddTrainers")}} >
           <p className="">+</p>
           <p className="">Add a Trainer </p>
         </div>
         <div className="flex cursor-pointer w-[477px] h-[100px] font-extrabold text-2xl justify-center rounded-lg border border-[#38CFBA] items-center gap-2"
-        onClick={()=>{route.push("/Trainees/AddTrainee")}} >
+        onClick={()=>{router.push("/Admin/Trainees/AddTrainee")}} >
           <p className="">+</p>
           <p className="">Add a Trainee </p>
         </div>

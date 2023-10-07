@@ -10,14 +10,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-
-  const [isBlured, setIsBlured] = useState(false);
-
+  const [isBlured, setIsBlured] = useState(false); 
   return (
     <html lang="en">
       <body className={inter.className}>
             <div className='w-screen h-screen flex'>
-                <SideNavbar User="Admin" Route='Trainees' setIsBlured={setIsBlured}/> 
+                <SideNavbar User="Admin" Route='General' setIsBlured={setIsBlured}/>  
                 <main className={`w-5/6 h-full bg-white ${isBlured ? 'blur-[5px]' : ''}`}>{children}</main>
             </div>
         </body>

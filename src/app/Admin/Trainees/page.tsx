@@ -39,7 +39,7 @@ export default function Home() {
     
     closeFunction();
   }
-  const route=useRouter()
+  const router=useRouter()
   return (
     <main className={`p-10 py-14 max-h-screen overflow-y-scroll ${isBlured ? 'blur-[5px]': ''}`}>
       <Header
@@ -49,7 +49,7 @@ export default function Home() {
       <div className="flex mt-12 items-center justify-between">
         <button
           className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
-          onClick={() => route.push("/Trainees/AddTrainee")}
+          onClick={() => router.push("/Admin/Trainees/AddTrainee")}
         >
           <p className=""> Add </p>
           <p className=""> + </p>
@@ -94,7 +94,7 @@ export default function Home() {
               <td className="py-4 flex gap-1 items-center justify-end ">
 
               <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
-              onClick={()=>route.push('/Trainees/1/EditTrainee')}>
+              onClick={()=>router.push('/Admin/Trainees/1/EditTrainee')}>
                 <Image alt="editIcon" src={editIcon} />
               </button>
               <Popup

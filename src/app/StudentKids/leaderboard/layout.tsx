@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="w-screen h-screen flex">
-          <SideNavbar Route="leaderboard" User="Student" setIsBlured={setIsBlured} />
+          <SideNavbar Route="leaderboard" User="StudentKid" setIsBlured={setIsBlured} />
           <main
             className={`w-5/6 h-full bg-white ${isBlured ? "blur-[5px]" : ""}`}
           >
