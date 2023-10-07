@@ -11,7 +11,7 @@ import AdultStudentGeneral from "@/components/AdultStudentGeneral/AdultStudentGe
 import AdultStudentRes from "@/components/AdultStudentGeneral/AdultStudentRessources";
 
 import "./globals.css";
-
+import {TrainingRessources} from "@/components/teacher/ressouces/TrainingRessource"
 export default function Home() {
   return (
     <main>
