@@ -8,17 +8,17 @@ export default [
     },
     {
         img: chatgbt,
-        title: 'AI',
+        title: 'Machine Learning',
         desc: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
     },
     {
         img: chatgbt,
-        title: 'AI',
+        title: 'Deep Learning',
         desc: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
     },
     {
         img: chatgbt,
-        title: 'AI',
+        title: 'Reinforcement Learning',
         desc: "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
     },
 ]
