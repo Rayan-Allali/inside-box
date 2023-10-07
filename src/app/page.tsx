@@ -11,6 +11,7 @@ import AdultStudentGeneral from "@/components/Student/AdultStudentGeneral/AdultS
 import AdultStudentRes from "@/components/Student/AdultStudentGeneral/AdultStudentRessources";
 import TestQuiz from "@/components/Student/AdultStudentGeneral/TestQuiz";
 import WaitingPage from "@/components/Student/WaitingPage";
+import StudentMessagerie from "@/components/Student/AdultStudentGeneral/StudentMessagerie";
 import "./globals.css";
 
 export default function Home() {
@@ -26,7 +27,8 @@ export default function Home() {
       {/*<AdultStudentGeneral/>*/} 
       {/* <AdultStudentRes/>*/}
       {/*<TestQuiz/>*/}
-      <WaitingPage/>
+      {/*<WaitingPage/>*/}
+      <StudentMessagerie/>
   
     </main>
   );
