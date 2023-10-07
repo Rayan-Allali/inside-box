@@ -24,7 +24,7 @@ import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 
 interface ISideNavbarProps {
   Route: string ;
-  User?:"Admin" | 'Teacher' | "Student";
+  User?:string
   setIsBlured: Function;
 }
 
@@ -37,21 +37,29 @@ const index = (props: ISideNavbarProps) => {
     switch (User) {
       case "Admin" :
         setElements([
-          { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
-          { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
-          { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
-          { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
-          { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
+          { name: "General", pic: frame, route:"Admin/General" , Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, route:"Admin/Trainers" , Bleupic: TrainerBleu},
+          { name: "Trainees", pic: Trainees, route:"Admin/Trainees" , Bleupic: TraineesBleu},
+          { name: "Trainings", pic: Trainings, route:"Admin/Trainings" , Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, route:"Admin/leaderboard" , Bleupic: leaderBoardBleu},
         ])
         break;
-      case "Student"  :
+      case "StudentAdult"  :
         setElements([
-          { name: "General", pic: frame, route:"General", Bleupic: frameBleu},
-          { name: "Trainers", pic: Trainer, route:"Trainers", Bleupic: TrainerBleu},
-          { name: "Trainings", pic: Trainings, route:"Trainings", Bleupic: TrainingsBleu},
-          { name: "leaderboard", pic: leaderBoard, route:"leaderboard", Bleupic: leaderBoardBleu},
+          { name: "General", pic: frame, route:"StudentAdult/General", Bleupic: frameBleu},
+          { name: "Trainers", pic: Trainer, route:"StudentAdult/Trainers", Bleupic: TrainerBleu},
+          { name: "Trainings", pic: Trainings, route:"StudentAdult/Trainings", Bleupic: TrainingsBleu},
+          { name: "leaderboard", pic: leaderBoard, route:"StudentAdult/leaderboard", Bleupic: leaderBoardBleu},
         ])
         break;
+        case "StudentKids"  :
+          setElements([
+            { name: "General", pic: frame, route:"StudentKids/General", Bleupic: frameBleu},
+            { name: "Trainers", pic: Trainer, route:"StudentKids/Trainers", Bleupic: TrainerBleu},
+            { name: "Trainings", pic: Trainings, route:"StudentKids/Trainings", Bleupic: TrainingsBleu},
+            { name: "leaderboard", pic: leaderBoard, route:"StudentKids/leaderboard", Bleupic: leaderBoardBleu},
+          ])
+          break;
         case "Teacher"  :
           setElements([
             { name: "My Students", pic: frame, route:"Teacher/Trainees", Bleupic: frameBleu},
@@ -61,11 +69,11 @@ const index = (props: ISideNavbarProps) => {
           break;
           default: 
           setElements([
-            { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
-            { name: "Trainers", pic: Trainer, route:"Trainers" , Bleupic: TrainerBleu},
-            { name: "Trainees", pic: Trainees, route:"Trainees" , Bleupic: TraineesBleu},
-            { name: "Trainings", pic: Trainings, route:"Trainings" , Bleupic: TrainingsBleu},
-            { name: "leaderboard", pic: leaderBoard, route:"leaderboard" , Bleupic: leaderBoardBleu},
+            { name: "General", pic: frame, route:"Teacher/General" , Bleupic: frameBleu},
+            { name: "Trainers", pic: Trainer, route:"Teacher/Trainers" , Bleupic: TrainerBleu},
+            { name: "Trainees", pic: Trainees, route:"Teacher/Trainees" , Bleupic: TraineesBleu},
+            { name: "Trainings", pic: Trainings, route:"Teacher/Trainings" , Bleupic: TrainingsBleu},
+            { name: "leaderboard", pic: leaderBoard, route:"Teacher/leaderboard" , Bleupic: leaderBoardBleu},
           ])
           break;
     }

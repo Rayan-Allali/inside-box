@@ -14,7 +14,7 @@ import attachement from "@/assets/images/Student/attachement.svg";
 import emoji from "@/assets/images/Student/emoji.svg";
 import send from "@/assets/images/Student/send.svg";
 
-const AdultStudentGeneral = () => {
+const StudentMessagerie = () => {
   return (
     <div className="h-screen pt-8 px-20 flex flex-col space-y-10 justify-between">
       <Header
@@ -92,4 +92,4 @@ const AdultStudentGeneral = () => {
   );
 };
 
-export default AdultStudentGeneral;
+export default StudentMessagerie;

@@ -1,5 +1,5 @@
 'use client'
-import '../globals.css'
+import '@/app/globals.css'
 import { Inter } from 'next/font/google'
 import SideNavbar from '@/components/Shared/Sidenavbar'
 import { useState } from 'react'
@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
             <div className='w-screen h-screen flex'>
-                <SideNavbar Route='General' setIsBlured={setIsBlured}/>  
+                <SideNavbar Route='leaderboard' setIsBlured={setIsBlured}/>  
                 <main className={`w-5/6 h-full bg-white ${isBlured ? 'blur-[5px]' : ''}`}>{children}</main>
             </div>
         </body>
