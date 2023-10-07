@@ -9,7 +9,7 @@ import EditTrainee from "@/components/Admin/Trainees/EditTrainee";
 import AddTraining from "@/components/Admin/Trainings/AddTraining";
 import AdultStudentGeneral from "@/components/AdultStudentGeneral/AdultStudentGeneral";
 import AdultStudentRes from "@/components/AdultStudentGeneral/AdultStudentRessources";
-import {GeneraleAdmin} from "@/components/Admin/generale"
+
 import "./globals.css";
 import {TrainingRessources} from "@/components/teacher/ressouces/TrainingRessource"
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       {/* <AddTraining/> */ }
       {/*<AdultStudentGeneral/>*/}
       
-      <GeneraleAdmin />
+      <AdultStudentRes/>
   
     </main>
   );
