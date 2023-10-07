@@ -31,7 +31,7 @@ const index = (props: ISideNavbarProps) => {
   }, []);
 
   return (
-    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white shadow-sidebar">
+    <div className="w-1/6 flex flex-col justify-between pt-28 h-[100vh] bg-white drop-shadow-sidebar">
       <div className="flex flex-col gap-32 items-center w-full">
         <Image alt="logo" src={logo} />
         <div className="w-full">
