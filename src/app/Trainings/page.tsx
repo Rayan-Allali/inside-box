@@ -28,11 +28,11 @@ export default function Home() {
     setTrainings(data);
   }, [])
 
-  const handleDelete = (title) => {
+  const handleDelete = (title: string) => {
     setTrainings(prev => prev.filter(training => training.title !== title))
   }
   return (
-    <main className="p-10 py-14">
+    <main className="p-10 py-14 max-h-screen overflow-y-scroll">
       {/* <Trainings /> */}
       <div className={`h-full p-12 py-20 relative ${isBlured ? 'blur-[5px]' : ''}`}>
         <Header

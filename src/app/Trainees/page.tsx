@@ -41,7 +41,7 @@ export default function Home() {
   }
   const route=useRouter()
   return (
-    <main className={`p-10 py-14 ${isBlured ? 'blur-[5px]': ''}`}>
+    <main className={`p-10 py-14 max-h-screen overflow-y-scroll ${isBlured ? 'blur-[5px]': ''}`}>
       <Header
         title="Welcome to the Trainees Page"
         subtitle="You can control accounts of trainees ! "
