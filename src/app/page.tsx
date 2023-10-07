@@ -10,6 +10,7 @@ import AddTraining from "@/components/Admin/Trainings/AddTraining";
 import AdultStudentGeneral from "@/components/Student/AdultStudentGeneral/AdultStudentGeneral";
 import AdultStudentRes from "@/components/Student/AdultStudentGeneral/AdultStudentRessources";
 import TestQuiz from "@/components/Student/AdultStudentGeneral/TestQuiz";
+import WaitingPage from "@/components/Student/WaitingPage";
 import "./globals.css";
 
 export default function Home() {
@@ -24,7 +25,8 @@ export default function Home() {
       {/* <AddTraining/> */ }
       {/*<AdultStudentGeneral/>*/} 
       {/* <AdultStudentRes/>*/}
-      <TestQuiz/>
+      {/*<TestQuiz/>*/}
+      <WaitingPage/>
   
     </main>
   );
