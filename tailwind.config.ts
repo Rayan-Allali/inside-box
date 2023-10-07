@@ -24,6 +24,7 @@ const config: Config = {
       },
       backgroundColor: {
         'gray-light': '#d6d6d6',
+        'blue-primary': '#07A2F3',
       },
       colors:{
         primaryBleu:"#07A2F3",

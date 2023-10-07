@@ -7,14 +7,10 @@ import DeleteIconRed from '@/assets/images/shared/delete-red.svg'
 type Props = {
     image: any;
     name: string;
+    handleDelete: MouseEventHandler
 }
 
-const TraineeRow = ({image, name}:Props) => {
-
-    const handleDelete:MouseEventHandler = (e) => {
-        
-    }
-
+const TraineeRow = ({image, name, handleDelete}:Props) => {
     return (
         <div className='h-12 w-full px-4 flex justify-between items-center'>
             <div className='flex items-center gap-6'>

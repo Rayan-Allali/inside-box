@@ -1,71 +1,58 @@
 "use client";
 import arrowDown from "@/assets/images/shared/arrowDown.svg";
 import Image from "next/image";
+import { useState, useEffect, MouseEventHandler } from 'react'
+import { useRouter } from "next/navigation";
+import Popup from "reactjs-popup";
+import ActionWithPasswordWindow from "@/components/Shared/PopupsWindows/ActionWithPasswordWindow";
+
+// Images
 import researchIcon from "@/assets/images/shared/researchIcon.svg";
 import deletIcon from "@/assets/images/shared/delete.svg";
 import editIcon from "@/assets/images/shared/edit.svg";
 import Header from "@/components/Shared/Header";
-import { useRouter } from "next/navigation";
+
+// Mock data
+import data from './data.js'
+
 export default function Home() {
-  const data = [
-    {
-      rank: 1,
-      traineeName: "John Doe",
-      completedCourses: 5,
-      lastXP4: 80,
-      xp: 2000,
-    },
-    {
-      rank: 2,
-      traineeName: "Jane Smith",
-      completedCourses: 3,
-      lastXP4: 75,
-      xp: 1800,
-    },
-    {
-      rank: 3,
-      traineeName: "Alice Johnson",
-      completedCourses: 4,
-      lastXP4: 90,
-      xp: 2200,
-    },
-    {
-      rank: 4,
-      traineeName: "Bob Wilson",
-      completedCourses: 6,
-      lastXP4: 85,
-      xp: 2100,
-    },
-    {
-      rank: 5,
-      traineeName: "Eva Adams",
-      completedCourses: 2,
-      lastXP4: 70,
-      xp: 1600,
-    },
-    {
-      rank: 6,
-      traineeName: "Michael Brown",
-      completedCourses: 7,
-      lastXP4: 95,
-      xp: 2400,
-    },
-  ];
+
+  const [ trainers, setTrainers ] = useState<{rank:number, trainerName:string, completedCourses: number, lastXP4:number, xp:number}[]>([]);
+  const [ isBlured, setIsBlured ] = useState(false);
+
+  useEffect(() => {
+    setTrainers(data);
+  }, [])
+
+  const goToAddTrainerPage = () => {
+    // router.push()
+  }
+
+  const handleDelete = (username:string, closeFunction:Function) => (e:MouseEvent) => {
+    setTrainers(prev => prev.filter(trainer => trainer.trainerName !== username));
+    console.log(`${username} deleted`);
+    
+    closeFunction();
+  }
+
   const router = useRouter();
+
   return (
-    <main className="p-10 py-14">
+    <main className={`p-10 py-14 ${isBlured ? 'blur-[5px]' : ''}`}>
       <Header
         title="Welcome to the Trainers Page "
         subtitle="You can control accounts of trainers ! "
       />
+
       <div className="flex mt-12 items-center justify-between">
-        <button
+        <button type="button"
           className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
           onClick={() => router.push("/Trainers/AddTrainers")}
         >
           <p className=""> Add </p>
           <p className=""> + </p>
         </button>
+
         <div className="flex items-center gap-2">
           <div className="w-min h-min relative">
             <input
@@ -79,7 +66,7 @@ export default function Home() {
               className="absolute top-1/2 -translate-y-1/2 left-3"
             />
           </div>
-          <button className="p-3 text-white rounded-lg bg-[#896DDB] justify-center w-32 flex gap-2 items-center">
+          <button type="button" className="p-3 text-white rounded-lg bg-[#896DDB] justify-center w-32 flex gap-2 items-center">
             <p className="">Training</p>
             <Image alt="arrowDown" src={arrowDown} />
           </button>
@@ -94,22 +81,37 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {data.map((d, index) => (
+          {trainers.map((d, index) => (
             <tr
               key={index}
               className={`text-[#828387] text-xl ${index == 0 && "border-t "} `}
             >
               <td className="px-4 py-4 pt-6 ">{d.rank}</td>
-              <td className="px-4 py-4 font-bold ">{d.traineeName}</td>
+              <td className="px-4 py-4 font-bold ">{d.trainerName}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
-                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
-                onClick={()=>router.push('/Trainers/2/EditTrainer')}
-                >
-                  <Image alt="editIcon" src={editIcon} />
-                </button>
-                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
-                  <Image alt="deleticon" src={deletIcon} />
-                </button>
+              
+              <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
+                <Image alt="editIcon" src={editIcon} />
+              </button>
+
+
+              <Popup
+                trigger={
+                  <button type="button" title="delete trainer" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
+                    <Image alt="deleticon" src={deletIcon}/>
+                  </button>
+                }
+                modal
+                onOpen={() => setIsBlured(true)}
+                onClose={() => setIsBlured(false)}
+                nested
+              >
+                {(close) => {
+                  return (
+                    <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(d.trainerName, close)} cancelHandler={close} />
+                  )}
+                }
+              </Popup>
               </td>
             </tr>
           ))}

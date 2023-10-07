@@ -11,17 +11,14 @@ interface ICardContainerProps {
   title: string;
   desc: string;
   img: any;
-  setIsBlured:Function
+  handleDelete: Function;
+  setIsBlured:Function;
 }
 const CardContainer = (props: ICardContainerProps) => {
-  const { title, desc, img, setIsBlured } = props;
+  const { title, desc, img, handleDelete, setIsBlured } = props;
 
-  const handleDelete = (closingFunction:Function) => (e:MouseEvent) => {
-    console.log("delete");
-    setIsBlured(false);
-    closingFunction();
-  }
 const router=useRouter()
+  
   return (
 
     <div className="border border-[#896DDB] rounded-[19px] h-72 w-96  ">
@@ -56,7 +53,7 @@ const router=useRouter()
           >
             {(close: any) => {
               return (
-                <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(close) as any} cancelHandler={close} />
+                <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={() => {handleDelete(title); close()} } cancelHandler={close} />
               )}
             }
           </Popup>
