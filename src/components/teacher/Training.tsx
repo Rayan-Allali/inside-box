@@ -6,9 +6,11 @@ import AiImg from "@/assets/images/shared/traningCover.png"
 import {BsCheckCircleFill} from "react-icons/bs"
 import Dossier from "@/assets/images/shared/dossier.svg"
 import addDossier from "@/assets/images/shared/addDossier.svg"
+import { useRouter } from 'next/router';
 
 export const TeacherTraining=()=>{
 
+    const router = useRouter();
     const [training,setTraining] = useState(
         {
             id:"0",
@@ -33,6 +35,11 @@ export const TeacherTraining=()=>{
             status:"not completed"
         }
     ])
+
+    const handleDossierClick=(ressourceId:string)=>{
+        router.push(`/${ressourceId}`)
+    }
+
     return(
     <div className='p-[40px]'>
     <div className='flex justify-between items-center '  >
@@ -77,13 +84,13 @@ export const TeacherTraining=()=>{
 {courses.map((course,index)=>{
         return(
              <div>
-                <Image src={Dossier.src}  alt="dossier" width={140} height={135}/>
+                <div onClick={()=>handleDossierClick(`chapitre${index}`)}><Image src={Dossier.src}  alt="dossier" width={140} height={135}/></div>
                 <h1 className='text-[#07A2F3] text-xl font-bold mt-5'>Chapitre {index}</h1>
                </div> 
         )          
 })}
         <div className='w-full'>
-            <Image src={addDossier.src} alt="addd Dossier" width={140} height={135} />
+           <div><Image src={addDossier.src} alt="addd Dossier" width={140} height={135} /></div> 
             <h1 className='text-[#07A2F3] text-xl font-bold mt-5'>Add Directory</h1>
            </div> 
                 </div>
