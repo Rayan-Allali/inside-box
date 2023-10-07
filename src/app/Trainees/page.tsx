@@ -1,59 +1,47 @@
-"use client";
-import arrowDown from "@/assets/images/shared/arrowDown.svg";
+'use client'
+import Popup from "reactjs-popup";
+import { MouseEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
-import researchIcon from "@/assets/images/shared/researchIcon.svg";
-import deletIcon from "@/assets/images/shared/delete.svg";
-import editIcon from "@/assets/images/shared/edit.svg";
+
+// Components
 import Header from "@/components/Shared/Header";
+import ActionWithPasswordWindow from "@/components/Shared/PopupsWindows/ActionWithPasswordWindow";
+
+// Images
+import arrowDown from "@/assets/images/shared/arrowDown.svg";
+import researchIcon from "@/assets/images/shared/researchIcon.svg";
+import deletIcon from "@/assets/images/shared/delete.svg"
+import editIcon from "@/assets/images/shared/edit.svg"
+
+// Mock data
+import data from './data.js'
 import { useRouter } from "next/navigation";
+
+type Trainee = {
+  rank: number
+  traineeName: string;
+  completedCourses: number;
+  lastXP4: number;
+  xp: number;
+}
+
 export default function Home() {
-  const data = [
-    {
-      rank: 1,
-      traineeName: "John Doe",
-      completedCourses: 5,
-      lastXP4: 80,
-      xp: 2000,
-    },
-    {
-      rank: 2,
-      traineeName: "Jane Smith",
-      completedCourses: 3,
-      lastXP4: 75,
-      xp: 1800,
-    },
-    {
-      rank: 3,
-      traineeName: "Alice Johnson",
-      completedCourses: 4,
-      lastXP4: 90,
-      xp: 2200,
-    },
-    {
-      rank: 4,
-      traineeName: "Bob Wilson",
-      completedCourses: 6,
-      lastXP4: 85,
-      xp: 2100,
-    },
-    {
-      rank: 5,
-      traineeName: "Eva Adams",
-      completedCourses: 2,
-      lastXP4: 70,
-      xp: 1600,
-    },
-    {
-      rank: 6,
-      traineeName: "Michael Brown",
-      completedCourses: 7,
-      lastXP4: 95,
-      xp: 2400,
-    },
-  ];
-  const router = useRouter();
+  const [ trainees, setTrainees ] = useState<Trainee[]>([]);
+  const [ isBlured, setIsBlured ] = useState(false);
+
+  useEffect(() => {
+    setTrainees(data);
+  }, [])
+
+  const handleDelete = (username: string, closeFunction: () => void) => (e: any) => {
+    setTrainees(prev => prev.filter(trainee => trainee.traineeName !== username));
+    console.log(`${username} has been deleted`);
+    
+    closeFunction();
+  }
+  const route=useRouter()
   return (
-    <main className="p-10 py-14">
+    <main className={`p-10 py-14 ${isBlured ? 'blur-[5px]': ''}`}>
       <Header
         title="Welcome to the Trainees Page"
         subtitle="You can control accounts of trainees ! "
@@ -61,7 +49,7 @@ export default function Home() {
       <div className="flex mt-12 items-center justify-between">
         <button
           className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
-          onClick={() => router.push("/Trainees/AddTrainee")}
+          onClick={() => route.push("/Trainees/AddTrainee")}
         >
           <p className=""> Add </p>
           <p className=""> + </p>
@@ -95,7 +83,7 @@ export default function Home() {
           </tr>
         </thead>
         <tbody>
-          {data.map((d, index) => (
+          {trainees.map((d, index) => (
             <tr
               key={index}
               className={`text-[#828387] text-xl ${index == 0 && "border-t "} `}
@@ -104,14 +92,28 @@ export default function Home() {
               <td className="px-4 py-4 font-bold ">{d.traineeName}</td>
               <td className="px-4 py-4 font-bold ">{d.completedCourses}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
-                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
-                onClick={()=>router.push('/Trainees/5/EditTrainee')}
-                >
-                  <Image alt="editIcon" src={editIcon} />
-                </button>
-                <button className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
+
+              <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
+              onClick={()=>route.push('/Trainees/1/EditTrainee')}>
+                <Image alt="editIcon" src={editIcon} />
+              </button>
+              <Popup
+                trigger={
+                  <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
                   <Image alt="deleticon" src={deletIcon} />
-                </button>
+                  </button>
+                }
+                modal
+                onOpen={() => setIsBlured(true)}
+                onClose={() => setIsBlured(false)}
+                nested
+              >
+                {(close: MouseEventHandler) => {
+                  return (
+                    <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(d.traineeName, close)} cancelHandler={close} />
+                  )}
+                }
+              </Popup>
               </td>
             </tr>
           ))}
