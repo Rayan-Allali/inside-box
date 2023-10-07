@@ -3,25 +3,31 @@ import Header from "@/components/Shared/Header";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { z } from "zod";
-import { toFormikValidate } from "zod-formik-adapter";
+import { toFormikValidationSchema } from "zod-formik-adapter";
+import AddTraineeFormSchema from "./AddTraineeFormSchema";
+import { TypeOf } from "zod";
+import axios from '@/utils/axios'
 
-const AddTraineeFormSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address").min(1, "Email is required"),
-  password: z.string().min(8, "Password must be at least 8 characters long"),
-  // gender will be either "male" or "female":
-  gender: z.enum(["", "male", "female"]),
-  trainingCourse: z.string().min(1, "Training course is required"),
-});
+type TraineeFormInputs = TypeOf<typeof AddTraineeFormSchema>;
 
 const AddTrainee = () => {
   const [viewPassword, setViewPassword] = useState(false);
-const router=useRouter()
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
+  const router=useRouter();
+  
+  const handleSubmit = async (values: any, { setSubmitting }: any) => {
     console.log(values);
-    setSubmitting(false);
+    try {
+      const response = await axios.post('/students',values)
+      console.log(response);
+      router.push('/Trainees')
+      
+    } catch (error) {
+      console.log(error);
+      alert(error.message)
+    }finally{
+      setSubmitting(false);
+    }
+    
   };
 
   return (
@@ -30,16 +36,19 @@ const router=useRouter()
           title="Add a trainee"
           subtitle="You can control accounts of trainees !"
         />
-        <Formik
+        <Formik<TraineeFormInputs>
           initialValues={{
             firstName: "",
             lastName: "",
             email: "",
-            password: "",
-            gender: "",
-            trainingCourse: "",
+            age: 6,
+            gender: 'male',
+            address: "",
+            phoneNumber: "",
+            parentNumber: "",
           }}
-          validate={toFormikValidate(AddTraineeFormSchema) as any }
+          // validate={toFormikValidate(AddTraineeFormSchema) as any}
+          validationSchema={toFormikValidationSchema(AddTraineeFormSchema)}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
@@ -166,12 +175,12 @@ const router=useRouter()
 
               {/* Parent Number */}
               <label htmlFor="" className="w-full col-start-1">
-                Parent Number <span className="text-red-600 mr-4">*</span>
+                Parent Number
                 <Field
                   type="text"
                   name="parentNumber"
                   placeholder="Parent Number"
-                  className="w-1/2 p-2 m-2 border-2 border-gray-400 rounded-md"
+                  className="w-1/2 p-2 m-2 ml-8 border-2 border-gray-400 rounded-md"
                 />
               </label>
 
