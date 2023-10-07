@@ -46,7 +46,10 @@ export default function Home() {
         subtitle="You can control accounts of trainees ! "
       />
       <div className="flex mt-12 items-center justify-between">
-        <button className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center">
+        <button
+          className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
+          onClick={() => router.push("/Trainees/AddTrainee")}
+        >
           <p className=""> Add </p>
           <p className=""> + </p>
         </button>
@@ -82,12 +85,13 @@ export default function Home() {
           {trainees.map((d, index) => (
             <tr
               key={index}
-              className={`text-[#828387] text-xl ${index==0 && "border-t "} `}
+              className={`text-[#828387] text-xl ${index == 0 && "border-t "} `}
             >
               <td className="px-4 py-4 pt-6 ">{d.rank}</td>
               <td className="px-4 py-4 font-bold ">{d.traineeName}</td>
               <td className="px-4 py-4 font-bold ">{d.completedCourses}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
+
               <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
                 <Image alt="editIcon" src={editIcon} />
               </button>

@@ -1,14 +1,15 @@
-'use client'
+"use client";
+import arrowDown from "@/assets/images/shared/arrowDown.svg";
 import Image from "next/image";
 import { useState, useEffect, MouseEventHandler } from 'react'
+import { useRouter } from "next/navigation";
 import Popup from "reactjs-popup";
 import ActionWithPasswordWindow from "@/components/Shared/PopupsWindows/ActionWithPasswordWindow";
 
 // Images
-import arrowDown from "@/assets/images/shared/arrowDown.svg";
 import researchIcon from "@/assets/images/shared/researchIcon.svg";
-import deletIcon from "@/assets/images/shared/delete.svg"
-import editIcon from "@/assets/images/shared/edit.svg"
+import deletIcon from "@/assets/images/shared/delete.svg";
+import editIcon from "@/assets/images/shared/edit.svg";
 import Header from "@/components/Shared/Header";
 
 // Mock data
@@ -33,6 +34,9 @@ export default function Home() {
     
     closeFunction();
   }
+
+  const router = useRouter();
+
   return (
     <main className={`p-10 py-14 ${isBlured ? 'blur-[5px]' : ''}`}>
       <Header
@@ -41,7 +45,10 @@ export default function Home() {
       />
 
       <div className="flex mt-12 items-center justify-between">
-        <button type="button" className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center" onClick={goToAddTrainerPage}>
+        <button type="button"
+          className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
+          onClick={() => router.push("/Trainers/AddTrainers")}
+        >
           <p className=""> Add </p>
           <p className=""> + </p>
         </button>
@@ -59,7 +66,7 @@ export default function Home() {
               className="absolute top-1/2 -translate-y-1/2 left-3"
             />
           </div>
-          <button className="p-3 text-white rounded-lg bg-[#896DDB] justify-center w-32 flex gap-2 items-center">
+          <button type="button" className="p-3 text-white rounded-lg bg-[#896DDB] justify-center w-32 flex gap-2 items-center">
             <p className="">Training</p>
             <Image alt="arrowDown" src={arrowDown} />
           </button>
@@ -77,11 +84,12 @@ export default function Home() {
           {trainers.map((d, index) => (
             <tr
               key={index}
-              className={`text-[#828387] text-xl ${index==0 && "border-t "} `}
+              className={`text-[#828387] text-xl ${index == 0 && "border-t "} `}
             >
               <td className="px-4 py-4 pt-6 ">{d.rank}</td>
               <td className="px-4 py-4 font-bold ">{d.trainerName}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
+              
               <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
                 <Image alt="editIcon" src={editIcon} />
               </button>

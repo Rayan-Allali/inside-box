@@ -5,6 +5,7 @@ import Edit from "@/assets/images/shared/edit.svg";
 import deleteIcon from "@/assets/images/shared/delete.svg";
 import Popup from "reactjs-popup";
 import ActionWithPasswordWindow from "../Shared/PopupsWindows/ActionWithPasswordWindow";
+import { useRouter } from "next/navigation";
 
 interface ICardContainerProps {
   title: string;
@@ -16,8 +17,12 @@ interface ICardContainerProps {
 const CardContainer = (props: ICardContainerProps) => {
   const { title, desc, img, handleDelete, setIsBlured } = props;
 
+const router=useRouter()
+  
   return (
-    <div  className="border border-[#896DDB] rounded-[19px] h-72 w-96 ">
+
+    <div className="border border-[#896DDB] rounded-[19px] h-72 w-96  ">
+
       <Image
         className="rounded-tl-[19px] rounded-tr-[19px] w-full  "
         alt="Course Img"
@@ -29,7 +34,9 @@ const CardContainer = (props: ICardContainerProps) => {
           <p className="text-xs text-[#00000080] "> {desc} </p>
         </div>
         <div className="flex items-center justify-end gap-3">
-          <button type="button" title="edit" className="border border-[#1C263080] p-3 py-2 rounded-md ">
+          <button type="button" title="edit" className="border border-[#1C263080] p-3 py-2 rounded-md "
+          onClick={()=>router.push('/Trainings/5/EditTraining')}
+          >
             <Image alt="edit" src={Edit} />
           </button>
           
@@ -44,7 +51,7 @@ const CardContainer = (props: ICardContainerProps) => {
             onClose={() => setIsBlured(false)}
             nested
           >
-            {(close) => {
+            {(close: any) => {
               return (
                 <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={() => {handleDelete(title); close()} } cancelHandler={close} />
               )}
