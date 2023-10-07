@@ -1,6 +1,6 @@
 'use client'
 import Popup from "reactjs-popup";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
 
 // Components
@@ -15,6 +15,7 @@ import editIcon from "@/assets/images/shared/edit.svg"
 
 // Mock data
 import data from './data.js'
+import { useRouter } from "next/navigation";
 
 type Trainee = {
   rank: number
@@ -32,15 +33,15 @@ export default function Home() {
     setTrainees(data);
   }, [])
 
-  const handleDelete = (username, closeFunction) => (e) => {
+  const handleDelete = (username: string, closeFunction: () => void) => (e: any) => {
     setTrainees(prev => prev.filter(trainee => trainee.traineeName !== username));
     console.log(`${username} has been deleted`);
     
     closeFunction();
   }
-  
+  const route=useRouter()
   return (
-    <main className={`p-10 py-14 ${isBlured ? 'blur-[5px]': ''}`}>
+    <main className={`p-10 py-14 max-h-screen overflow-y-scroll ${isBlured ? 'blur-[5px]': ''}`}>
       <Header
         title="Welcome to the Trainees Page"
         subtitle="You can control accounts of trainees ! "
@@ -48,7 +49,7 @@ export default function Home() {
       <div className="flex mt-12 items-center justify-between">
         <button
           className="p-3 text-white rounded-lg bg-[#38CFBA] justify-center w-28 flex gap-2 items-center"
-          onClick={() => router.push("/Trainees/AddTrainee")}
+          onClick={() => route.push("/Trainees/AddTrainee")}
         >
           <p className=""> Add </p>
           <p className=""> + </p>
@@ -92,7 +93,8 @@ export default function Home() {
               <td className="px-4 py-4 font-bold ">{d.completedCourses}</td>
               <td className="py-4 flex gap-1 items-center justify-end ">
 
-              <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 ">
+              <button type="button" className="border border-[#37373740] rounded-[5px] w-16 flex items-center justify-center h-10 "
+              onClick={()=>route.push('/Trainees/1/EditTrainee')}>
                 <Image alt="editIcon" src={editIcon} />
               </button>
               <Popup
@@ -106,7 +108,7 @@ export default function Home() {
                 onClose={() => setIsBlured(false)}
                 nested
               >
-                {(close) => {
+                {(close: MouseEventHandler) => {
                   return (
                     <ActionWithPasswordWindow title="Confirm the operation" leftText="Delete" rightText="Cancel" actionHandler={handleDelete(d.traineeName, close)} cancelHandler={close} />
                   )}
