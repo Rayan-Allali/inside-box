@@ -25,10 +25,11 @@ import leaderBoardBleu from '@/assets/images/SideNavbar/leaderBoardBleu.svg'
 interface ISideNavbarProps {
   Route: "General" | "Trainers" | "Trainees" | "Trainings" | "leaderboard" ;
   User?:"Admin" | 'Teacher' | "Student";
+  setIsBlured: Function;
 }
 
 const index = (props: ISideNavbarProps) => {
-  const { Route, User } = props;
+  const { Route, User, setIsBlured } = props;
 
   const [Elements, setElements] = useState([
     { name: "General", pic: frame, route:"General" , Bleupic: frameBleu},
@@ -68,7 +69,8 @@ const index = (props: ISideNavbarProps) => {
   }, []);
 
   const handleLogout = (closeFunction:Function) => (e:MouseEvent) => {
-
+    e.preventDefault()
+    closeFunction()
   }
 
   return (
@@ -109,10 +111,12 @@ const index = (props: ISideNavbarProps) => {
         </div>
         <Popup
             trigger={
-              <Image alt="logout" src={Logout}/>
+              <Image alt="logout" src={Logout} className='cursor-pointer'/>
             }
             modal
             nested
+            onOpen={() => setIsBlured(true)}
+            onClose={() => setIsBlured(false)}
           >
             {(close) => {
               return (

@@ -8,17 +8,17 @@ import { toFormikValidate } from 'zod-formik-adapter';
 import Popup from 'reactjs-popup';
 import TraineesListWindow from '@/components/Shared/PopupsWindows/TraineesListWindow';
 
-const AddTraineeFormSchema = z.object({
-    firstName: z.string().min(1,'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
-    email: z.string().email('Invalid email address').min(1, 'Email is required'),
-    password: z.string().min(8, 'Password must be at least 8 characters long'),
-    // gender will be either "male" or "female":
-    gender: z.enum(['', 'male', 'female']),
-    trainingCourse: z.string().min(1, 'Training course is required' ),
+const AddTrainingFormSchema = z.object({
+    title: z.string().min(1, 'Title is required'),
+    date: z.string().min(1, 'Date is required'),
+    duration: z.date(),
+    prequisites: z.string().min(1, 'Prerequisites is required'),
+    public: z.string().min(1, 'Public is required'),
+    description: z.string().min(1, 'Description is required'),
 });
 
 type Trainee = {
+    image: any;
     name: string;
 }
 
@@ -26,7 +26,7 @@ const AddTraining = () => {
 
     const [ viewPassword, setViewPassword ] = useState(false);
     const [ isBlured, setIsBlured ] = useState(false);
-    const [ traineesList, setTraineesList ] = useState([])
+    const [ traineesList, setTraineesList ] = useState<Trainee[]>([])
 
     const handleSubmit = (values:any, {setSubmitting}:{setSubmitting:any}) => {   
         console.log(values);
@@ -39,7 +39,7 @@ const AddTraining = () => {
             <Header title='Add a training' subtitle='You can control accounts of trainings !' />
             <Formik
             initialValues={{firstName: '', lastName: '', email: '', password: '', gender: '', trainingCourse: ''}} 
-            validate={toFormikValidate(AddTraineeFormSchema)}
+            validate={toFormikValidate(AddTrainingFormSchema)}
             onSubmit={handleSubmit}
             >
                 {({isSubmitting}) => (
@@ -120,12 +120,12 @@ const AddTraining = () => {
                         {/* Description Input (textarea) */}
                         <label htmlFor="" className='row-start-1 col-start-2 row-span-3 flex justify-between'>
                             Description <span className='text-red-600 mr-8'>*</span>
-                            <Field as="textarea" name="description" placeholder="Description" className='w-full p-2 border-2 border-gray-400 rounded-md'/>
+                            <Field as="textarea" name="description" placeholder="Description" className='w-[300px] p-2 border-2 border-gray-400 rounded-md'/>
                             <ErrorMessage name="description" component="div" className='text-red-400'/>
                         </label>
 
                         {/* Image Upload Input */}
-                        <div className="flex items-center justify-center justify-self-end w-[65%] row-start-4 col-start-2 row-span-2">
+                        <div className="flex items-center justify-center justify-self-end w-[300px] row-start-4 col-start-2 row-span-2">
                             <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full  border-2 border-gray-300 rounded-lg cursor-pointer bg-white hover:bg-gray-100 ">
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg className="w-8 h-8 mb-4 text-gray-text" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">

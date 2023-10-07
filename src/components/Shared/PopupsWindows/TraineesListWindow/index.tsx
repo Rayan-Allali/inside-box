@@ -4,13 +4,9 @@ import React, { MouseEventHandler, useEffect, useState, useRef } from 'react'
 import ProfileLogo from '@/assets/images/shared/Profillogo.svg'
 import TraineeRow from './TraineeRow';
 
-// Mock data
-import traineesList from './trainees.js'
-
 type Props = {
     traineesList: Trainee[];
     setTraineesList: React.Dispatch<React.SetStateAction<Trainee[]>>;
-    actionHandler: MouseEventHandler;
     closeHandler: MouseEventHandler;
 }
 
